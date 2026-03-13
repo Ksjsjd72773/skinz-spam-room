@@ -13,6 +13,18 @@ from flask import Flask, request, jsonify
 from black9 import openroom, spmroom
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot is running"
+
+def start_flask():
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 3000)))
+
+# هذا يشغل السيرفر في Thread منفصل
+flask_thread = threading.Thread(target=start_flask)
+flask_thread.start()
 
 
 connected_clients = {}
