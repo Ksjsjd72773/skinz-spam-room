@@ -1,0 +1,8 @@
+flask
+requests
+psutil
+PyJWT
+urllib3
+protobuf
+gunicorn
+protobuf-decoder
