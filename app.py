@@ -15,7 +15,7 @@ from black9 import openroom, spmroom
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/s")
 def home():
     return "Bot is running"
 
