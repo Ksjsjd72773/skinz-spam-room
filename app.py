@@ -13,6 +13,17 @@ from flask import Flask, request, jsonify
 from black9 import openroom, spmroom
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  
+
+
+
+connected_clients = {}
+connected_clients_lock = threading.Lock()
+
+
+active_spam_targets = {}
+active_spam_lock = threading.Lock()
+
+
 app = Flask(__name__)
 
 @app.route("/s")
@@ -25,17 +36,6 @@ def start_flask():
 # هذا يشغل السيرفر في Thread منفصل
 flask_thread = threading.Thread(target=start_flask)
 flask_thread.start()
-
-
-connected_clients = {}
-connected_clients_lock = threading.Lock()
-
-
-active_spam_targets = {}
-active_spam_lock = threading.Lock()
-
-
-app = Flask(__name__)
 
 class SimpleAPI:
     def __init__(self):
