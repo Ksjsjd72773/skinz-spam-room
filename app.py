@@ -26,16 +26,7 @@ active_spam_lock = threading.Lock()
 
 app = Flask(__name__)
 
-@app.route("/s")
-def home():
-    return "Bot is running"
 
-def start_flask():
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 3000)))
-
-# هذا يشغل السيرفر في Thread منفصل
-flask_thread = threading.Thread(target=start_flask)
-flask_thread.start()
 
 class SimpleAPI:
     def __init__(self):
@@ -229,7 +220,9 @@ def home():
 
 def run_api():
     print("🌐 بدء تشغيل API...")
-    app.run(host='0.0.0.0', port=8000, debug=False)
+    # رندر يفضل استخدام os.environ.get("PORT")
+    port = int(os.environ.get("PORT", 7860))
+    app.run(host='0.0.0.0', port=port, debug=False)
 
 def AuTo_ResTartinG():
     time.sleep(6 * 60 * 60)
